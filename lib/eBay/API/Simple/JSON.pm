@@ -332,7 +332,8 @@ sub _get_request_body {
     return undef if ! defined $self->{request_data};
     my $body;
     eval {
-        $body = encode_json( $self->{request_data} );
+        my $json = JSON->new->utf8;
+        $body = $json->allow_blessed->convert_blessed->encode( $self->{request_data} );
     };
     if ( $@ ) {
         $self->errors_append( { 'decode_error' => $@ } );
