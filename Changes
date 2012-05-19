@@ -2,6 +2,9 @@
 
 TODO: add ClientAlerts and BestMatch backend
 
+0.28 Mon May  7 16:37:35 PDT 2012
+- add allow_blessed and convert_blessed to json encode call 
+
 0.27
 - add support for basic authorization
 
