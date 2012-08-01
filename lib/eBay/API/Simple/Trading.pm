@@ -317,8 +317,9 @@ This method supplies the request body for the Shopping API call
 sub _get_request_body {
     my $self = shift;
 
-    # if auth_method is set to 'token' use AuthToken
-    # else use username/password
+    # if auth_method is set to 'token' use token
+    # if auth_method is set to 'iaftoken' use iaftoken
+    # if auth_method is set to 'user' use username/password
     if ( $self->{auth_method} eq 'token' ) {
          my $xml = "<?xml version='1.0' encoding='utf-8'?>"
              . "<" . $self->{verb} . "Request xmlns=\"urn:ebay:apis:eBLBaseComponents\">"
@@ -335,7 +336,20 @@ sub _get_request_body {
 
           return $xml;
     }
-    else {
+    elsif ( $self->{auth_method} eq 'iaftoken' ) {
+         my $xml = "<?xml version='1.0' encoding='utf-8'?>"
+             . "<" . $self->{verb} . "Request xmlns=\"urn:ebay:apis:eBLBaseComponents\">"
+             . XMLout( 
+                 $self->{call_data}, 
+                 NoAttr => !$self->api_config->{enable_attributes},
+                 KeepRoot => 1, 
+                 RootName => undef 
+             )
+             . "</" . $self->{verb} . "Request>";
+
+          return $xml;
+    }
+    elsif ( $self->{auth_method} eq 'user' ) {
         my $xml = "<?xml version='1.0' encoding='utf-8'?>"
              . "<" . $self->{verb} . "Request xmlns=\"urn:ebay:apis:eBLBaseComponents\">"
              . "<RequesterCredentials><Username>"
@@ -372,6 +386,9 @@ sub _get_request_headers {
     $obj->push_header("X-EBAY-API-CERT-NAME" => $self->api_config->{certid});
     $obj->push_header("X-EBAY-API-SITEID"    => $self->api_config->{siteid});
     $obj->push_header("X-EBAY-API-CALL-NAME" => $self->{verb});
+    if ( $self->{auth_method} eq 'iaftoken' ) {
+        $obj->push_header("X-EBAY-API-IAF-TOKEN" => $self->api_config->{iaftoken});
+    }
     $obj->push_header("Content-Type" => "text/xml");
 
     return $obj;
@@ -425,12 +442,13 @@ sub _load_credentials {
         die "missing Authentication: " . join( ", ", @missing );
     }
 
-    # Collect Token, username, password, domain, https, uri and version from
+    # Collect token, iaftoken, username, password, domain, https, uri and version from
     # the ebay.ini file
     # if token found, set auth_method to 'token'
+    # if iaftoken found, set auth_method to 'iaftoken'
     # if username/password found set auth_method to 'user'
 
-    for my $optional ( qw/token username password domain https uri version/ ) {
+    for my $optional ( qw/token iaftoken username password domain https uri version/ ) {
 
        next if defined $self->api_config->{$optional};
 
@@ -445,15 +463,19 @@ sub _load_credentials {
     if ( exists ( $self->api_config->{token} ) ) {
         $self->{auth_method} = 'token';
 
+        delete($self->api_config->{iaftoken});
         delete($self->api_config->{username});
         delete($self->api_config->{password});
+    }
+    elsif ( exists ( $self->api_config->{iaftoken} ) ) {
+        $self->{auth_method} = 'iaftoken';
 
+        delete($self->api_config->{username});
+        delete($self->api_config->{password});
     }
     elsif ((exists( $self->api_config->{username} ))
         && (exists( $self->api_config->{password} ))) {
-
         $self->{auth_method} = 'user';
-
     }
     elsif ( exists( $self->api_config->{username} ) ) {
         $self->{auth_method} = 'user';        
@@ -480,6 +502,7 @@ sub _fish_ebay_ini {
     $arg = 'ApplicationKey' if $arg eq 'appid';
     $arg = 'CertificateKey' if $arg eq 'certid';
     $arg = 'Token'          if $arg eq 'token';
+    $arg = 'IAFToken'       if $arg eq 'iaftoken';
     $arg = 'UserName'       if $arg eq 'username';
     $arg = 'Password'       if $arg eq 'password';
     $arg = 'Domain'         if $arg eq 'domain';
