@@ -2,6 +2,9 @@
 
 TODO: add ClientAlerts and BestMatch backend
 
+0.29 Wed Aug  1 17:34:01 PDT 2012
+- add IAF Token support to Trading module
+
 0.28 Mon May  7 16:37:35 PDT 2012
 - add allow_blessed and convert_blessed to json encode call 
 
