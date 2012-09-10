@@ -155,6 +155,20 @@ sub post {
     $self->{custom_method} = undef;
 }
 
+
+=head2 patch( $url )
+
+execute a "PATCH" request to the specified endpoint
+
+=cut
+
+sub patch {
+    my $self = shift;
+    $self->{custom_method} = 'PATCH';
+    $self->execute(@_);    
+    $self->{custom_method} = undef;
+}
+
 =head2 put( $url )
 
 execute a "PUT" request to the specified endpoint
