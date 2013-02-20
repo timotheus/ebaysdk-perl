@@ -587,6 +587,7 @@ sub _get_request_agent {
     my $self = shift;
 
     my $ua= LWP::UserAgent->new();
+    $ua->ssl_opts( verify_hostname => 0 );
 
     $ua->agent( sprintf( '%s / eBay API Simple (Version: %s)',
         $ua->agent,
