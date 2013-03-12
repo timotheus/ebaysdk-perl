@@ -1,6 +1,6 @@
 package eBay::API::Simple;
 
-our $VERSION = '0.29';
+our $VERSION = '0.30';
 
 =head1 NAME 
 
@@ -64,5 +64,11 @@ see subclass for more docs.
 
 Tim Keefer <tim@timkeefer.com>
 
+=head1 LICENSE
+
+© 2012-2013 eBay Software Foundation
+Licensed under CDDL 1.0
+
 =cut
+
 1;

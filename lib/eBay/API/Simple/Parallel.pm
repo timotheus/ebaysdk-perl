@@ -148,4 +148,9 @@ sub on_failure {
 
 Brian Gontowski <bgontowski@gmail.com>
 
+=head1 LICENSE
+
+© 2012-2013 eBay Software Foundation
+Licensed under CDDL 1.0
+
 =cut

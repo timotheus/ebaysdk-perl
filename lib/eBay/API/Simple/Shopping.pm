@@ -416,4 +416,9 @@ sub _fish_ebay_ini {
 
 Tim Keefer <tim@timkeefer.com>
 
+=head1 LICENSE
+
+© 2012-2013 eBay Software Foundation
+Licensed under CDDL 1.0
+
 =cut

@@ -1,7 +1,7 @@
-# Changes for eBay::API::Simple
+# Changes for ebaysdk-perl (eBay::API::Simple)
 
-TODO: add ClientAlerts and BestMatch backend
-
+0.30 Tue Mar 12 09:25:40 PDT 2013
+- add CDDL license
 - added patch() method to JSON backend
 - set verify_hostname to false for SSL
 

@@ -740,4 +740,9 @@ Tim Keefer <tim@timkeefer.com>
 Andrew Dittes <adittes@gmail.com>
 Brian Gontowski <bgontowski@gmail.com>
 
+=head1 LICENSE
+
+© 2012-2013 eBay Software Foundation
+Licensed under CDDL 1.0
+
 =cut

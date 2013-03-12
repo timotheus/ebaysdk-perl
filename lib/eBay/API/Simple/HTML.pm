@@ -253,8 +253,9 @@ sub _get_request_object {
 
 Tim Keefer <tim@timkeefer.com>
 
-=head1 COPYRIGHT
+=head1 LICENSE
 
-Tim Keefer 2009
+© 2012-2013 eBay Software Foundation
+Licensed under CDDL 1.0
 
 =cut
