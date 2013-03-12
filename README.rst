@@ -25,6 +25,7 @@ SDK Classes
 * `Shopping API Class`_ - performance-optimized, lightweight APIs for accessing public eBay data.
 * `Merchandising API Class`_ - easy way to surface available items and products on eBay that provide good value or are otherwise popular with eBay buyers.
 * `HTML Class`_ - generic back-end class the enbles and standardized way to make API calls.
+* `JSON Class`_ - generic back-end class the enbles and standardized way to make JSON API calls.
 * `Parallel Class`_ - SDK support for concurrent API calls.
 
 SDK Configuration
