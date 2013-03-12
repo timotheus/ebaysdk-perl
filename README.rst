@@ -56,6 +56,7 @@ License
 .. _Finding API Class: https://github.com/timotheus/ebaysdk-perl/wiki/Finding-API-Class
 .. _Shopping API Class: https://github.com/timotheus/ebaysdk-perl/wiki/Shopping-API-Class
 .. _HTML Class: https://github.com/timotheus/ebaysdk-perl/wiki/HTML-Class
+.. _JSON Class: https://github.com/timotheus/ebaysdk-perl/wiki/JSON-Class
 .. _Parallel Class: https://github.com/timotheus/ebaysdk-perl/wiki/Parallel-Class
 .. _eBay Developer Forums: https://www.x.com/developers/ebay/forums
 .. _Github issue tracking: https://github.com/timotheus/ebaysdk-perl/issues
